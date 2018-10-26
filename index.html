@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+  <title>Vue</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="center col m12 s12">Huikean hieno Ostoslistaäppi</h1>
+    <div id = 'app'>
+      <p class="center col m6 s6" v-if="errors.length">
+        <b class="flow-text">Törmäsimme seuraavanlaisiin virheisiin:</b>
+        <ul class="collection">
+          <li class="collection-item center col m6 s6 amber flow-text" v-for="error in errors">{{ error }}</li>
+        </ul>
+      </p>
+      <div class="row">
+        <div class="input-field col m10 s10">
+          <input id='ostos' type="text" placeholder="Kirjoita tähän ostos" v-model="ostos"/>
+          <label class="active" for="ostos">Ostos</label>
+        </div>
+        <div class="col m2 s2 right-align">
+          <a class="btn btn-large waves-effect waves-light blue" v-on:click="lisays"><i class="material-icons">add_shopping_cart</i></a>
+        </div>
+      </div>
+        <ul class="collection with-header">
+          <li class="collection-header amber flow-text">Ostokset:</li>
+          <lista
+            v-for="(message, index) in messages"
+            v-bind:key="message.id"
+            v-bind:osuus="message.osuus"
+            v-on:poisto="poisto(index)"
+            ></lista>
+        </ul>
+      </div>
+    </div>
+    <br>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="scripts.js"></script>
+</body>
+<footer class="page-footer blue flow-text">
+  <div class="container">Tehnyt Jesse Tervo</div></footer>
+</html>
